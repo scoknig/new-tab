@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<!--[if lte IE 6]><html class="preIE7 preIE8 preIE9"><![endif]-->
+<!--[if IE 7]><html class="preIE8 preIE9"><![endif]-->
+<!--[if IE 8]><html class="preIE9"><![endif]-->
+<!--[if gte IE 9]><!--><html><!--<![endif]-->
+  <head>
+    <title>New tab</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link href='https://fonts.googleapis.com/css?family=Heebo:100' rel='stylesheet'>
+  <style type="text/css">
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Heebo';
+      text-align: center;
+    }
+    
+    .bg {
+      background-image: url("https://source.unsplash.com/featured/?nature,technology");
+      
+      height: 100%;
+      
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    h1 {      
+      color: #fff;
+      font-size: 7em;
+      margin: 0;
+      
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    h3 {      
+      color: #fff;
+      font-size: 3em;
+      margin: 0;
+      
+      position: relative;
+      top: 45%;
+      transform: translateY(-50%);
+    }
+  </style>
+  </head>
+  <body onload="startTime(); displayDate()">
+    <div class="bg">
+      <h1 id="clock"></h1>
+      <h3 id="date"></h3>
+    </div>
+    <script type="text/javascript">
+      function displayDate() {
+        var now = new Date();
+        var months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+        var date = ((now.getDate<10) ? "0" : "") + now.getDate();
+        
+        var fDate = months[now.getMonth()] + " " + date + ", " + (fourDigits(now.getYear()));
+        document.getElementById('date').innerHTML = fDate;
+      }
+    
+      function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+      }
+      
+      function fourDigits(number) {
+        return (number < 1000) ? number + 1900 : number;
+      }
+      
+      function checkTime(i) {
+        if (i < 10) {i = "0" + i};
+        return i;
+      }
+    </script>
+  </body>
+</html>
